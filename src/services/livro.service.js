@@ -105,12 +105,6 @@ async function createAvaliacao(livroId, avaliacao) {
 }
 
 async function deleteAvaliacao(livroId, indice) {
-    const livro = await getLivro(livroId)
-
-    if (!livro) {
-        throw { name: 'ForeignKeyViolationError', message: 'Livro não encontrado' }
-    }
-
     const livroInfo = await livroInfoRepository.getLivroInfo(livroId)
 
     if (livroInfo && livroInfo.avaliacoes) {

@@ -8,6 +8,14 @@ async function getCliente(id) {
     return await Cliente.findByPk(id)
 }
 
+async function getClienteByEmail(email) {
+    return await Cliente.findOne({
+        where: {
+            email
+        }
+    })
+}
+
 async function createCliente(cliente) {
     return await Cliente.create(cliente)
 }
@@ -37,6 +45,7 @@ async function deleteCliente(id) {
 module.exports = {
     getClientes,
     getCliente,
+    getClienteByEmail,
     createCliente,
     updateCliente,
     deleteCliente

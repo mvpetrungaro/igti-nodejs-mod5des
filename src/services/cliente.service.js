@@ -10,7 +10,10 @@ async function getClientes() {
 
 async function getCliente(id) {
     const cliente = await clienteRepository.getCliente(id)
-    delete cliente.senha
+
+    if (cliente) {
+        delete cliente.senha
+    }
 
     return cliente
 }

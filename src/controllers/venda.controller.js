@@ -1,4 +1,5 @@
 const vendaService = require('../services/venda.service')
+const authService = require('../services/auth.service')
 
 async function getVendas(req, res, next) {
     try {
@@ -15,7 +16,24 @@ async function getVendas(req, res, next) {
 
 async function getVenda(req, res, next) {
     try {
-        const venda = await vendaService.getVenda(req.params.id)
+        const role = authService.getRole(req.auth.user)
+
+        let venda
+
+        if (role == 'cliente') {
+            try {
+                venda = await vendaService.getVenda(req.params.id, req.auth.user)
+            } catch (err) {
+                if (err.name == 'Forbidden') {
+                    res.status(403)
+                }
+
+                throw err
+            }
+        } else {
+            venda = await vendaService.getVenda(req.params.id)
+        }
+
         res.send(venda)
     } catch(err) {
         next(err)

@@ -53,7 +53,6 @@ async function createLivroInfo(req, res, next) {
         } catch (err) {
             if (err.name == 'ForeignKeyViolationError' || err.name == 'PrimaryKeyViolationError') {
                 res.status(400)
-                console.log(res.statusCode)
             }
 
             throw err
@@ -147,7 +146,6 @@ async function createAvaliacao(req, res, next) {
         } catch (err) {
             if (err.name == 'ForeignKeyViolationError') {
                 res.status(400)
-                console.log(res.statusCode)
             }
 
             throw err
@@ -159,17 +157,8 @@ async function createAvaliacao(req, res, next) {
 
 async function deleteAvaliacao(req, res, next) {
     try {
-        try {
-            await livroService.deleteAvaliacao(parseInt(req.params.id), parseInt(req.params.indice))
-            res.status(204).end()
-        } catch (err) {
-            if (err.name == 'ForeignKeyViolationError') {
-                res.status(400)
-                console.log(res.statusCode)
-            }
-
-            throw err
-        }
+        await livroService.deleteAvaliacao(parseInt(req.params.id), parseInt(req.params.indice))
+        res.status(204).end()
     } catch(err) {
         next(err)
     }

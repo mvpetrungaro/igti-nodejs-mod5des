@@ -10,8 +10,18 @@ async function getVendas(filtro) {
     }
 }
 
-async function getVenda(id) {
-    return await vendaRepository.getVenda(id)
+async function getVenda(id, email) {
+    const venda = await vendaRepository.getVenda(id)
+
+    if (email) {
+        const cliente = await clienteRepository.getClienteByEmail(email)
+
+        if (!venda || cliente.cliente_id != venda.cliente_id) {
+            throw { name: 'Forbidden', message: 'Você não tem permissão para acessar esse recurso' }
+        }
+    }
+    
+    return venda
 }
 
 async function createVenda(venda) {
