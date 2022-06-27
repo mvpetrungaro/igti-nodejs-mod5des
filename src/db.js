@@ -5,7 +5,12 @@ const db = new Sequelize(
     {
         dialect: 'postgres',
         logging: false,
-        query: { raw: true }
+        define: {
+            timestamps: false
+        },
+        query: {
+            raw: true
+        }
     }
 )
 
