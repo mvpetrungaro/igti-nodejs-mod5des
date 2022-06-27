@@ -45,10 +45,12 @@ app.use(async (err, _req, res, _next) => {
 
 db.sync().then(() => {
     console.log('Connected to the DB!')
+}).catch(err => {
+    console.log('DB down!')
 })
 
 app.listen(3000, () => {
-    console.log('API Started!')
+    console.log('API started!')
 })
 
 module.exports = app

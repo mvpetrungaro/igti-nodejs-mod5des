@@ -1,10 +1,12 @@
 {
   "name": "igti-nodejs-moddesfin",
   "version": "1.0.0",
-  "description": "",
+  "description": "Desafio final do bootcamp de Node.js do IGTI",
+  "repository": "https://github.com/mvpetrungaro/igti-nodejs-mod5des",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -17,5 +19,9 @@
     "mongodb": "^4.7.0",
     "pg": "^8.7.3",
     "sequelize": "^6.21.0"
+  },
+  "devDependencies": {
+    "jest": "^28.1.1",
+    "supertest": "^6.2.3"
   }
 }
