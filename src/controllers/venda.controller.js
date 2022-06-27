@@ -1,6 +1,11 @@
 const vendaService = require('../services/venda.service')
 const authService = require('../services/auth.service')
 
+function toDate(dateString) {
+    const [day, month, year] = dateString.split('/')
+    return new Date(month + '/' + day + '/' + year);
+}
+
 async function getVendas(req, res, next) {
     try {
         const vendas = await vendaService.getVendas({
@@ -44,7 +49,7 @@ async function createVenda(req, res, next) {
     try {
         try {
             const venda = await vendaService.createVenda({
-                data: req.body.data,
+                data: toDate(req.body.data),
                 cliente_id: req.body.cliente_id,
                 livro_id: req.body.livro_id
             })
