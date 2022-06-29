@@ -1,0 +1,11 @@
+//Instalar babel e babel-jest, sei lá, algo do tipo.
+//Com essa config, o jest passa a ter suporte aos es-modules.
+{
+    "env": {
+        "test": {
+            "plugins": [
+                "transform-es2015-modules-commonjs"
+            ]
+        }
+    }
+}
